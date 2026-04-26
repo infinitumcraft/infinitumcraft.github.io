@@ -14,6 +14,8 @@ async function loadDiscordAvatar() {
     const fallback = document.getElementById('avatar-fallback');
 
     img.src = url;
+    const favicon = document.querySelector("link[rel='icon']");
+    if (favicon) favicon.href = url;
     img.style.display = 'block';
     if (fallback) fallback.style.display = 'none';
   } catch {
