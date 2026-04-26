@@ -1,28 +1,53 @@
 const LANYARD_URL = 'https://lanyard-self-production.up.railway.app/v1/users/852648614282002502';
 
+const STATUS_CONFIG = {
+  online:  { label: '● Online',         class: 'status-online' },
+  idle:    { label: '● Idle',           class: 'status-idle' },
+  dnd:     { label: '● Do Not Disturb', class: 'status-dnd' },
+  offline: { label: '● Offline',        class: 'status-offline' },
+};
+
+function updateStatus(status) {
+  const config  = STATUS_CONFIG[status] || STATUS_CONFIG.offline;
+  const dot     = document.getElementById('status-dot');
+  const badge   = document.getElementById('status-badge');
+  const text    = document.getElementById('status-text');
+
+  // Reset classes
+  dot.className   = `status-dot ${config.class}`;
+  badge.className = `status-badge ${config.class}`;
+  text.textContent = config.label;
+}
+
 async function loadDiscordAvatar() {
   try {
     const res  = await fetch(LANYARD_URL);
     const json = await res.json();
     const { id, avatar } = json.data.discord_user;
+    const status = json.data.discord_status;
 
-    if (!avatar) return;
+    if (avatar) {
+      const ext      = avatar.startsWith('a_') ? 'gif' : 'png';
+      const url      = `https://cdn.discordapp.com/avatars/${id}/${avatar}.${ext}?size=256`;
+      const img      = document.getElementById('avatar');
+      const fallback = document.getElementById('avatar-fallback');
 
-    const ext      = avatar.startsWith('a_') ? 'gif' : 'png';
-    const url      = `https://cdn.discordapp.com/avatars/${id}/${avatar}.${ext}?size=256`;
-    const img      = document.getElementById('avatar');
-    const fallback = document.getElementById('avatar-fallback');
+      img.src = url;
+      const favicon = document.querySelector("link[rel='icon']");
+      if (favicon) favicon.href = url;
+      img.style.display = 'block';
+      if (fallback) fallback.style.display = 'none';
+    }
 
-    img.src = url;
-    const favicon = document.querySelector("link[rel='icon']");
-    if (favicon) favicon.href = url;
-    img.style.display = 'block';
-    if (fallback) fallback.style.display = 'none';
+    updateStatus(status);
   } catch {
+    updateStatus('offline');
   }
 }
 
 loadDiscordAvatar();
+// Refresh status every 30 seconds
+setInterval(loadDiscordAvatar, 30000);
 
 window.addEventListener('load', () => {
   const loader = document.getElementById('loader');
