@@ -14,10 +14,68 @@ function updateStatus(status) {
   const badge   = document.getElementById('status-badge');
   const text    = document.getElementById('status-text');
 
-  // Reset classes
   dot.className   = `status-dot ${config.class}`;
   badge.className = `status-badge ${config.class}`;
-  text.textContent = config.label;
+  text.textContent = LANG_STATUS[currentLang][status] || LANG_STATUS[currentLang].offline;
+}
+
+const ACTIVITY_TYPES = {
+  0: { en: '🎮 Playing', fr: '🎮 Joue à' },
+  1: { en: '📡 Streaming', fr: '📡 Stream' },
+  2: { en: '🎵 Listening to', fr: '🎵 Écoute' },
+  3: { en: '📺 Watching', fr: '📺 Regarde' },
+  4: { en: '💬 Custom Status', fr: '💬 Statut personnalisé' },
+  5: { en: '🏆 Competing in', fr: '🏆 Compétition' },
+};
+
+function updateActivity(activities) {
+  const card = document.getElementById('activity-card');
+
+
+  const activity = activities?.find(a => a.type !== 4);
+
+  if (!activity) {
+    card.style.display = 'none';
+    return;
+  }
+
+  const typeLabel = ACTIVITY_TYPES[activity.type] || ACTIVITY_TYPES[0];
+  document.getElementById('activity-type').textContent = typeLabel[currentLang] || typeLabel.en;
+  document.getElementById('activity-name').textContent = activity.name || '';
+  document.getElementById('activity-detail').textContent = activity.details || '';
+  document.getElementById('activity-state').textContent = activity.state || '';
+
+
+  const imgEl      = document.getElementById('activity-img');
+  const imgSmallEl = document.getElementById('activity-img-small');
+
+  if (activity.assets?.large_image) {
+    let imgUrl = activity.assets.large_image;
+    if (imgUrl.startsWith('mp:external/')) {
+      imgUrl = 'https://media.discordapp.net/external/' + imgUrl.replace('mp:external/', '');
+    } else {
+      imgUrl = `https://cdn.discordapp.com/app-assets/${activity.application_id}/${imgUrl}.png`;
+    }
+    imgEl.src = imgUrl;
+    imgEl.style.display = 'block';
+  } else {
+    imgEl.style.display = 'none';
+  }
+
+  if (activity.assets?.small_image) {
+    let smallUrl = activity.assets.small_image;
+    if (smallUrl.startsWith('mp:external/')) {
+      smallUrl = 'https://media.discordapp.net/external/' + smallUrl.replace('mp:external/', '');
+    } else {
+      smallUrl = `https://cdn.discordapp.com/app-assets/${activity.application_id}/${smallUrl}.png`;
+    }
+    imgSmallEl.src = smallUrl;
+    imgSmallEl.style.display = 'block';
+  } else {
+    imgSmallEl.style.display = 'none';
+  }
+
+  card.style.display = 'flex';
 }
 
 async function loadDiscordAvatar() {
@@ -25,7 +83,8 @@ async function loadDiscordAvatar() {
     const res  = await fetch(LANYARD_URL);
     const json = await res.json();
     const { id, avatar } = json.data.discord_user;
-    const status = json.data.discord_status;
+    const status     = json.data.discord_status;
+    const activities = json.data.activities;
 
     if (avatar) {
       const ext      = avatar.startsWith('a_') ? 'gif' : 'png';
@@ -41,13 +100,15 @@ async function loadDiscordAvatar() {
     }
 
     updateStatus(status);
+    updateActivity(activities);
   } catch {
     updateStatus('offline');
+    document.getElementById('activity-card').style.display = 'none';
   }
 }
 
 loadDiscordAvatar();
-// Refresh status every 30 seconds
+
 setInterval(loadDiscordAvatar, 30000);
 
 window.addEventListener('load', () => {
@@ -77,7 +138,6 @@ function copyDiscord(e) {
   });
 }
 
-// Load saved theme
 applyTheme(localStorage.getItem('theme') || 'dark');
 
 toggleBtn.addEventListener('click', () => {
@@ -98,7 +158,6 @@ const revealObserver = new IntersectionObserver(entries => {
 
 revealEls.forEach(el => revealObserver.observe(el));
 
-// Project filters
 const filterBtns   = document.querySelectorAll('.filter-btn');
 const projectCards = document.querySelectorAll('.project-card');
 
@@ -120,7 +179,6 @@ filterBtns.forEach(btn => {
   });
 });
 
-// Contact form
 const contactForm = document.getElementById('contact-form');
 const submitBtn   = document.getElementById('submit-btn');
 const formStatus  = document.getElementById('form-status');
@@ -133,7 +191,7 @@ contactForm.addEventListener('submit', async (e) => {
   const message = document.getElementById('message').value.trim();
 
   if (!name || !email || !message) {
-    formStatus.textContent = 'Please fill in all fields.';
+    formStatus.textContent = LANG_FORM_MESSAGES[currentLang].empty;
     formStatus.className = 'show error';
     return;
   }
@@ -153,11 +211,11 @@ contactForm.addEventListener('submit', async (e) => {
 
     if (!res.ok) throw new Error();
 
-    formStatus.textContent = 'Message sent! I\'ll get back to you soon ✨';
+    formStatus.textContent = LANG_FORM_MESSAGES[currentLang].success;
     formStatus.className = 'show success';
     contactForm.reset();
   } catch {
-    formStatus.textContent = 'Something went wrong. Try again later.';
+    formStatus.textContent = LANG_FORM_MESSAGES[currentLang].error;
     formStatus.className = 'show error';
   } finally {
     submitBtn.classList.remove('loading');
@@ -165,8 +223,91 @@ contactForm.addEventListener('submit', async (e) => {
   }
 });
 
-// ── Navbar active link on scroll ──
-const sections = document.querySelectorAll('section[id]');
+const LANG_STATUS = {
+  en: {
+    online:  '● Online',
+    idle:    '● Idle',
+    dnd:     '● Do Not Disturb',
+    offline: '● Offline',
+  },
+  fr: {
+    online:  '● En ligne',
+    idle:    '● Inactif',
+    dnd:     '● Ne pas déranger',
+    offline: '● Hors ligne',
+  }
+};
+
+const LANG_FORM_MESSAGES = {
+  en: {
+    success: "Message sent! I'll get back to you soon ✨",
+    error: 'Something went wrong. Try again later.',
+    empty: 'Please fill in all fields.',
+  },
+  fr: {
+    success: 'Message envoyé ! Je te répondrai bientôt ✨',
+    error: 'Une erreur est survenue. Réessaie plus tard.',
+    empty: 'Merci de remplir tous les champs.',
+  }
+};
+
+let currentLang = localStorage.getItem('lang') || 'en';
+
+function applyLang(lang) {
+  currentLang = lang;
+  localStorage.setItem('lang', lang);
+  document.getElementById('lang-current').textContent = lang.toUpperCase();
+  document.querySelectorAll('[data-en]').forEach(el => {
+    el.textContent = lang === 'en' ? el.dataset.en : el.dataset.fr;
+  });
+  const statusText = document.getElementById('status-text');
+  if (statusText) {
+    const currentStatus = document.getElementById('status-dot').className.replace('status-dot ', '').replace('status-', '');
+    statusText.textContent = LANG_STATUS[lang][currentStatus] || LANG_STATUS[lang].offline;
+  }
+  const activityType = document.getElementById('activity-type');
+  if (activityType && activityType.textContent) {
+    const match = Object.values(ACTIVITY_TYPES).find(t => t.en === activityType.dataset.type || t.fr === activityType.dataset.type);
+    if (match) activityType.textContent = match[lang];
+  }
+}
+
+const langDropdown = document.getElementById('lang-dropdown');
+document.getElementById('lang-toggle').addEventListener('click', (e) => {
+  e.stopPropagation();
+  langDropdown.classList.toggle('open');
+});
+
+document.querySelectorAll('.lang-menu button').forEach(btn => {
+  btn.addEventListener('click', () => {
+    applyLang(btn.dataset.lang);
+    langDropdown.classList.remove('open');
+  });
+});
+
+document.addEventListener('click', () => langDropdown.classList.remove('open'));
+
+applyLang(currentLang);
+
+const hamburger    = document.getElementById('hamburger');
+const mobileMenu   = document.getElementById('mobile-menu');
+const mobileOverlay = document.getElementById('mobile-overlay');
+
+function toggleMenu(open) {
+  hamburger.classList.toggle('open', open);
+  mobileMenu.classList.toggle('open', open);
+  mobileOverlay.classList.toggle('open', open);
+  hamburger.setAttribute('aria-expanded', open);
+  document.body.style.overflow = open ? 'hidden' : '';
+}
+
+hamburger.addEventListener('click', () => toggleMenu(!mobileMenu.classList.contains('open')));
+mobileOverlay.addEventListener('click', () => toggleMenu(false));
+
+document.querySelectorAll('.mobile-nav a').forEach(link => {
+  link.addEventListener('click', () => toggleMenu(false));
+});
+
 const navLinks = document.querySelectorAll('nav a');
 
 const sectionObserver = new IntersectionObserver(entries => {

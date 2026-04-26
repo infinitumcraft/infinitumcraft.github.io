@@ -21,25 +21,53 @@
 
   <header id="navbar">
     <div class="nav-inner">
-      <span class="nav-logo">infinitumcraftreal.github<span class="accent">.io</span></span>
+      <span class="nav-logo">
+      <span class="logo-full">infinitumcraftreal.github<span class="accent">.io</span></span>
+      <span class="logo-short">infi<span class="accent">.</span></span>
+      </span>
       <nav>
-        <a href="#about">About</a>
-        <a href="#skills">Skills</a>
-        <a href="#projects">Projects</a>
-        <a href="#contact">Contact</a>
+        <a href="#about" data-en="About" data-fr="À propos">About</a>
+        <a href="#skills" data-en="Skills" data-fr="Compétences">Skills</a>
+        <a href="#projects" data-en="Projects" data-fr="Projets">Projects</a>
+        <a href="#contact" data-en="Contact" data-fr="Contact">Contact</a>
       </nav>
       <button id="theme-toggle" aria-label="Toggle theme">
         <i class="fa-solid fa-moon" id="theme-icon"></i>
       </button>
+      <div id="lang-dropdown" class="lang-dropdown">
+        <button id="lang-toggle" aria-label="Toggle language">
+          <span id="lang-current">EN</span> <i class="fa-solid fa-chevron-down"></i>
+        </button>
+        <div class="lang-menu">
+          <button data-lang="en">🇬🇧 English</button>
+          <button data-lang="fr">🇫🇷 Français</button>
+        </div>
+      </div>
+      <button id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
     </div>
   </header>
+
+  <!-- MOBILE MENU -->
+  <div id="mobile-menu">
+    <nav class="mobile-nav">
+      <a href="#about" data-en="About" data-fr="À propos">About</a>
+      <a href="#skills" data-en="Skills" data-fr="Compétences">Skills</a>
+      <a href="#projects" data-en="Projects" data-fr="Projets">Projects</a>
+      <a href="#contact" data-en="Contact" data-fr="Contact">Contact</a>
+    </nav>
+  </div>
+  <div id="mobile-overlay"></div>
 
   <section id="about" class="reveal">
     <div class="about-grid">
       <div class="about-text">
-        <p class="about-label">hey there <span class="wave">👋</span></p>
+        <p class="about-label" data-en="hey there 👋" data-fr="salut 👋">hey there <span class="wave">👋</span></p>
         <h1>I'm <span class="accent">Infi</span></h1>
-        <p class="about-bio">
+        <p class="about-bio" data-en="French developer in training, currently in Terminale STI2D. I mainly build games, but also tools and whatever seems fun at the time. Passionate about software, game dev, and turning ideas into reality." data-fr="Développeur français en formation, actuellement en Terminale STI2D. Je crée principalement des jeux, mais aussi des outils et tout ce qui me semble amusant. Passionné par le développement logiciel, le game dev, et transformer les idées en réalité.">
           French developer in training, currently in Terminale STI2D. I mainly build games,
           but also tools and whatever seems fun at the time.
           Passionate about software, game dev, and turning ideas into reality.
@@ -49,7 +77,10 @@
           <a href="https://gitlab.com/Infinitumcraftreal" target="_blank" aria-label="GitLab"><i class="fab fa-gitlab"></i></a>
           <a href="#" aria-label="Discord" onclick="copyDiscord(event)"><i class="fab fa-discord"></i></a>
         </div>
-        <a href="#projects" class="cta-btn">See my projects <i class="fa-solid fa-arrow-down"></i></a>
+        <a href="#projects" class="cta-btn">
+          <span data-en="See my projects" data-fr="Voir mes projets">See my projects</span>
+          <i class="fa-solid fa-arrow-down"></i>
+        </a>
       </div>
       <div class="about-visual">
         <div class="avatar-wrap">
@@ -60,8 +91,20 @@
           <div id="status-dot" class="status-dot status-offline"></div>
         </div>
         <div id="status-badge" class="status-badge status-offline">
-          <span class="status-label">Current status:</span>
+          <span class="status-label" data-en="Current status:" data-fr="Statut actuel :">Current status:</span>
           <span id="status-text">● Offline</span>
+        </div>
+        <div id="activity-card" class="activity-card" style="display:none;">
+          <div class="activity-icon-wrap">
+            <img id="activity-img" src="" alt="">
+            <img id="activity-img-small" src="" alt="" class="activity-img-small">
+          </div>
+          <div class="activity-info">
+            <span class="activity-type" id="activity-type"></span>
+            <span class="activity-name" id="activity-name"></span>
+            <span class="activity-detail" id="activity-detail"></span>
+            <span class="activity-state" id="activity-state"></span>
+          </div>
         </div>
         <div class="about-badge badge-1"><i class="fa-brands fa-unity"></i> Unity</div>
         <div class="about-badge badge-2"><i class="fa-brands fa-github"></i> GitHub</div>
@@ -72,8 +115,8 @@
 
   <section id="skills" class="reveal">
     <div class="section-header">
-      <h2>Skills</h2>
-      <p>What I work with and how comfortable I am with each of them.</p>
+      <h2 data-en="Skills" data-fr="Compétences">Skills</h2>
+      <p data-en="What I work with and how comfortable I am with each of them." data-fr="Ce avec quoi je travaille et mon niveau dans chacun d'eux.">What I work with and how comfortable I am with each of them.</p>
     </div>
 
     <div class="skills-grid">
@@ -81,27 +124,27 @@
       <div class="skill-category">
         <div class="skill-cat-header">
           <i class="devicon-cplusplus-plain"></i>
-          <h4>Languages</h4>
+          <h4 data-en="Languages" data-fr="Langages">Languages</h4>
         </div>
         <ul>
           <li>
             <div class="skill-row">
               <span><i class="devicon-cplusplus-plain"></i> C / C++</span>
-              <span class="skill-level medium">Medium</span>
+              <span class="skill-level medium" data-en="Medium" data-fr="Moyen">Medium</span>
             </div>
             <div class="skill-bar"><div style="--w: 55%"></div></div>
           </li>
           <li>
             <div class="skill-row">
               <span><i class="devicon-javascript-plain"></i> JavaScript</span>
-              <span class="skill-level medium">Medium</span>
+              <span class="skill-level medium" data-en="Medium" data-fr="Moyen">Medium</span>
             </div>
             <div class="skill-bar"><div style="--w: 55%"></div></div>
           </li>
           <li>
             <div class="skill-row">
               <span><i class="devicon-python-plain"></i> Python</span>
-              <span class="skill-level medium">Medium</span>
+              <span class="skill-level medium" data-en="Medium" data-fr="Moyen">Medium</span>
             </div>
             <div class="skill-bar"><div style="--w: 55%"></div></div>
           </li>
@@ -111,27 +154,27 @@
       <div class="skill-category">
         <div class="skill-cat-header">
           <i class="devicon-unity-plain"></i>
-          <h4>Game Dev</h4>
+          <h4 data-en="Game Dev" data-fr="Jeux Vidéo">Game Dev</h4>
         </div>
         <ul>
           <li>
             <div class="skill-row">
               <span><i class="devicon-unity-plain"></i> Unity / C#</span>
-              <span class="skill-level good">Good</span>
+              <span class="skill-level good" data-en="Good" data-fr="Bien">Good</span>
             </div>
             <div class="skill-bar"><div style="--w: 70%"></div></div>
           </li>
           <li>
             <div class="skill-row">
               <span><img src="assets/images/gamemaker.webp" alt="GameMaker" class="gamemaker-icon"> GameMaker 2</span>
-              <span class="skill-level medium">Medium</span>
+              <span class="skill-level medium" data-en="Medium" data-fr="Moyen">Medium</span>
             </div>
             <div class="skill-bar"><div style="--w: 50%"></div></div>
           </li>
           <li>
             <div class="skill-row">
               <span><i class="devicon-godot-plain"></i> Godot</span>
-              <span class="skill-level beginner">Beginner</span>
+              <span class="skill-level beginner" data-en="Beginner" data-fr="Débutant">Beginner</span>
             </div>
             <div class="skill-bar"><div style="--w: 25%"></div></div>
           </li>
@@ -141,7 +184,7 @@
       <div class="skill-category">
         <div class="skill-cat-header">
           <i class="fa-solid fa-screwdriver-wrench"></i>
-          <h4>Tools</h4>
+          <h4 data-en="Tools" data-fr="Outils">Tools</h4>
         </div>
         <ul class="tools-list">
           <li><i class="devicon-git-plain"></i> Git / GitHub / GitLab</li>
@@ -155,21 +198,41 @@
 
   <section id="projects" class="reveal">
     <div class="section-header">
-      <h2>Projects</h2>
-      <p>A selection of things I've worked on, more is coming soon.</p>
+      <h2 data-en="Projects" data-fr="Projets">Projects</h2>
+      <p data-en="A selection of things I've worked on, more is coming soon." data-fr="Une sélection de ce sur quoi j'ai travaillé, d'autres arrivent bientôt.">A selection of things I've worked on, more is coming soon.</p>
     </div>
 
     <div class="filters">
-      <button class="filter-btn active" data-filter="all">All</button>
-      <button class="filter-btn" data-filter="game">Games</button>
-      <button class="filter-btn" data-filter="tool">Tools</button>
-      <button class="filter-btn" data-filter="web">Web</button>
+      <button class="filter-btn active" data-filter="all" data-en="All" data-fr="Tout">All</button>
+      <button class="filter-btn" data-filter="game" data-en="Games" data-fr="Jeux">Games</button>
+      <button class="filter-btn" data-filter="tool" data-en="Tools" data-fr="Outils">Tools</button>
+      <button class="filter-btn" data-filter="web" data-en="Web" data-fr="Web">Web</button>
     </div>
 
     <div class="projects-grid">
       <div class="projects-empty" id="projects-empty" style="display:none;">
         <i class="fa-solid fa-box-open"></i>
-        <p>Sadly there is no project for this category yet ;c</p>
+        <p data-en="Sadly there is no project for this category yet ;c" data-fr="Il n'y a malheureusement pas encore de projet dans cette catégorie ;c">Sadly there is no project for this category yet ;c</p>
+      </div>
+
+      <div class="project-card" data-type="web">
+        <div class="project-thumb">
+          <img src="assets/images/projects/portfolio.png" alt="Personal Website" onerror="this.parentElement.classList.add('no-img')">
+          <div class="project-overlay">
+            <a href="https://infinitumcraftreal.github.io" target="_blank" class="overlay-btn"><i class="fa-solid fa-globe"></i> Open website</a>
+          </div>
+        </div>
+        <div class="project-body">
+          <div class="project-status status-active"><i class="fa-solid fa-circle-dot"></i> <span data-en="Active" data-fr="Actif">In progress</span></div>
+          <h4>Infi Website</h4>
+          <p data-en="Created this website which is my personal portfolio" data-fr="J'ai créé ce site web qui est mon portfolio personnel.">Created this website which is my personal portfolio</p>
+          <div class="project-tags">
+            <span>Web</span>
+            <span>HTML</span>
+            <span>CSS</span>
+            <span>JavaScript</span>
+          </div>
+        </div>
       </div>
 
       <div class="project-card" data-type="game">
@@ -180,9 +243,9 @@
           </div>
         </div>
         <div class="project-body">
-          <div class="project-status status-wip"><i class="fa-solid fa-wrench"></i> In progress</div>
+          <div class="project-status status-wip"><i class="fa-solid fa-wrench"></i> <span data-en="In progress" data-fr="En cours">In progress</span></div>
           <h4>Kitsuny Valley</h4>
-          <p>A cozy 2D pixel art farming game built in Unity. Grow crops, manage your farm, interact with the NPCs and explore at your own pace. Not yet in public demo</p>
+          <p data-en="A cozy 2D pixel art farming game built in Unity. Grow crops, manage your farm, interact with the NPCs and explore at your own pace. Not yet in public demo" data-fr="Un jeu de farming 2D pixel art fait avec Unity. Cultive des récoltes, gère ta ferme, interagis avec les PNJs et explore à ton propre rythme. Pas encore en démo publique.">A cozy 2D pixel art farming game built in Unity. Grow crops, manage your farm, interact with the NPCs and explore at your own pace. Not yet in public demo</p>
           <div class="project-tags">
             <span>Unity</span>
             <span>C#</span>
@@ -199,9 +262,9 @@
           </div>
         </div>
         <div class="project-body">
-          <div class="project-status status-wip"><i class="fa-solid fa-wrench"></i> In progress</div>
+          <div class="project-status status-wip"><i class="fa-solid fa-wrench"></i> <span data-en="In progress" data-fr="En cours">In progress</span></div>
           <h4>The Fractured Vale</h4>
-          <p>A 2D platformer game currently in development. Fast-paced movement, levels and mechanics still being designed.</p>
+          <p data-en="A 2D platformer game currently in development. Fast-paced movement, levels and mechanics still being designed." data-fr="Un jeu de plateforme 2D actuellement en développement. Des mouvements rapides, des niveaux et des mécaniques encore en cours de conception.">A 2D platformer game currently in development. Fast-paced movement, levels and mechanics still being designed.</p>
           <div class="project-tags">
             <span>Unity</span>
             <span>C#</span>
@@ -220,10 +283,10 @@
         <div class="project-body">
           <div class="project-statuses">
             <div class="project-status status-open"><i class="fa-solid fa-code-branch"></i> Open Source</div>
-            <div class="project-status status-abandoned"><i class="fa-solid fa-box-archive"></i> Abandoned</div>
+            <div class="project-status status-abandoned"><i class="fa-solid fa-box-archive"></i> <span data-en="Abandoned" data-fr="Abandonné">Abandoned</span></div>
           </div>
           <h4>Kryptonite Mod</h4>
-          <p>A 1.20.1 Minecraft mod adding kryptonite content. Development paused since 2023 the source available on GitHub.</p>
+          <p data-en="A 1.20.1 Minecraft mod adding kryptonite content. Development paused since 2023 the source available on GitHub." data-fr="Un mod Minecraft 1.20.1 ajoutant du contenu lié à la kryptonite. Développement pausé depuis 2023, le code source est disponible sur GitHub.">A 1.20.1 Minecraft mod adding kryptonite content. Development paused since 2023 the source available on GitHub.</p>
           <div class="project-tags">
             <span>Java</span>
             <span>Minecraft</span>
@@ -237,25 +300,25 @@
 
   <section id="contact" class="reveal">
     <div class="contact-box">
-      <h2>Get in touch</h2>
-      <p>Have a project or a collab idea? contact me!</p>
+      <h2 data-en="Get in touch" data-fr="Me contacter">Get in touch</h2>
+      <p data-en="Have a project or a collab idea? contact me!" data-fr="Tu as un projet ou une idée de collaboration ? Contacte-moi !">Have a project or a collab idea? contact me!</p>
 
       <div class="contact-inner">
         <form class="contact-form" id="contact-form">
           <div class="field">
             <input type="text" id="name" required placeholder=" ">
-            <label for="name">Your name</label>
+            <label for="name" data-en="Your name" data-fr="Ton prénom">Your name</label>
           </div>
           <div class="field">
             <input type="email" id="email" required placeholder=" ">
-            <label for="email">Your email</label>
+            <label for="email" data-en="Your email" data-fr="Ton email">Your email</label>
           </div>
           <div class="field">
             <textarea id="message" rows="4" required placeholder=" "></textarea>
-            <label for="message">Your message</label>
+            <label for="message" data-en="Your message" data-fr="Ton message">Your message</label>
           </div>
           <button type="submit" id="submit-btn">
-            <span class="btn-text">Send message</span>
+            <span class="btn-text" data-en="Send message" data-fr="Envoyer">Send message</span>
             <span class="btn-loader"></span>
           </button>
           <p id="form-status"></p>
@@ -264,7 +327,7 @@
         <div class="contact-aside">
           <i class="fa-solid fa-envelope"></i>
           <p class="contact-email">infinitumcraft@outlook.com</p>
-          <p class="contact-note">Currently <strong>open to collaborations</strong> and projects</p>
+          <p class="contact-note" data-en="Currently open to collaborations and projects" data-fr="Actuellement ouvert aux collaborations et projets">Currently <strong>open to collaborations</strong> and projects</p>
           <div class="contact-socials">
             <a href="https://github.com/Infinitumcraftreal" target="_blank"><i class="fab fa-github"></i> GitHub</a>
             <a href="https://gitlab.com/Infinitumcraftreal" target="_blank"><i class="fab fa-gitlab"></i> GitLab</a>
@@ -278,7 +341,7 @@
   <footer>
     <p>© 2026 – Infi &nbsp;·&nbsp; built with code</p>
   </footer>
-  <div id="discord-toast">@ infinitumcraft copied!</div>
+  <div id="discord-toast" data-en="@ infinitumcraft copied!" data-fr="@ infinitumcraft copié !">@ infinitumcraft copied!</div>
   <script src="script.js?v=2"></script>
 </body>
 </html>
