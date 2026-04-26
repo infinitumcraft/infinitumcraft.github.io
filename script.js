@@ -1,4 +1,5 @@
 const LANYARD_URL = 'https://lanyard-self-production.up.railway.app/v1/users/852648614282002502';
+history.scrollRestoration = 'manual';
 
 const STATUS_CONFIG = {
   online:  { label: '● Online',         class: 'status-online' },
