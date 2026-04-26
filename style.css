@@ -670,6 +670,39 @@ section {
   margin-bottom: 2.5rem;
 }
 
+.show-more-wrap {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.show-more-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 2rem;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--card);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.show-more-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  transform: translateY(-2px);
+}
+
+.show-more-btn i {
+  font-size: 0.75rem;
+  transition: transform 0.2s;
+}
+
 .filter-btn {
   padding: 0.55rem 1.2rem;
   border-radius: 999px;

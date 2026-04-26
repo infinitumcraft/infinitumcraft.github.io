@@ -160,24 +160,59 @@ revealEls.forEach(el => revealObserver.observe(el));
 
 const filterBtns   = document.querySelectorAll('.filter-btn');
 const projectCards = document.querySelectorAll('.project-card');
+const PROJECTS_PER_PAGE = 6;
+let showAll = false;
+
+function applyFilter(filter) {
+  showAll = false;
+  const filtered = [...projectCards].filter(card =>
+    filter === 'all' || card.dataset.type === filter
+  );
+
+  projectCards.forEach(card => card.style.display = 'none');
+
+  filtered.forEach((card, i) => {
+    card.style.display = i < PROJECTS_PER_PAGE ? '' : 'none';
+  });
+
+  document.getElementById('projects-empty').style.display = filtered.length === 0 ? 'flex' : 'none';
+
+  const wrap = document.getElementById('show-more-wrap');
+  const btn  = document.getElementById('show-more-btn');
+  if (filtered.length > PROJECTS_PER_PAGE) {
+    wrap.style.display = 'flex';
+    btn.querySelector('span').textContent = currentLang === 'en' ? 'Show more' : 'Voir plus';
+    btn.querySelector('i').className = 'fa-solid fa-chevron-down';
+  } else {
+    wrap.style.display = 'none';
+  }
+}
 
 filterBtns.forEach(btn => {
   btn.addEventListener('click', () => {
     filterBtns.forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
-
-    const filter = btn.dataset.filter;
-    let visibleCount = 0;
-
-    projectCards.forEach(card => {
-      const show = filter === 'all' || card.dataset.type === filter;
-      card.style.display = show ? '' : 'none';
-      if (show) visibleCount++;
-    });
-
-    document.getElementById('projects-empty').style.display = visibleCount === 0 ? 'flex' : 'none';
+    applyFilter(btn.dataset.filter);
   });
 });
+
+document.getElementById('show-more-btn').addEventListener('click', () => {
+  const filter = document.querySelector('.filter-btn.active').dataset.filter;
+  const filtered = [...projectCards].filter(card =>
+    filter === 'all' || card.dataset.type === filter
+  );
+  showAll = !showAll;
+  filtered.forEach((card, i) => {
+    card.style.display = (!showAll && i >= PROJECTS_PER_PAGE) ? 'none' : '';
+  });
+  const btn = document.getElementById('show-more-btn');
+  btn.querySelector('span').textContent = showAll
+    ? (currentLang === 'en' ? 'Show less' : 'Voir moins')
+    : (currentLang === 'en' ? 'Show more' : 'Voir plus');
+  btn.querySelector('i').className = showAll ? 'fa-solid fa-chevron-up' : 'fa-solid fa-chevron-down';
+});
+
+applyFilter('all');
 
 const contactForm = document.getElementById('contact-form');
 const submitBtn   = document.getElementById('submit-btn');
