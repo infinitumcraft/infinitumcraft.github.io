@@ -1,4 +1,4 @@
-const LANYARD_URL = 'http://localhost:16385/v1/users/852648614282002502';
+const LANYARD_URL = 'http://91.160.25.193:16385/v1/users/852648614282002502';
 
 async function loadDiscordAvatar() {
   try {
