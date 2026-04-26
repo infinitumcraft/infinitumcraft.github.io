@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Infi – Developer</title>
+  <meta name="description" content="Infi – Developer portfolio. Projects, skills, and contact." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div id="loader">
+    <div class="loader-ring"></div>
+  </div>
+
+  <header id="navbar">
+    <div class="nav-inner">
+      <span class="nav-logo">infi<span class="accent">.</span></span>
+      <nav>
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <button id="theme-toggle" aria-label="Toggle theme">
+        <i class="fa-solid fa-moon" id="theme-icon"></i>
+      </button>
+    </div>
+  </header>
+
+  <section id="about" class="reveal">
+    <div class="about-grid">
+      <div class="about-text">
+        <p class="about-label">hey there <span class="wave">👋</span></p>
+        <h1>I'm <span class="accent">Infi</span></h1>
+        <p class="about-bio">
+          French developer in training, currently in Terminale STI2D. I mainly build games,
+          but also tools and whatever seems fun at the time.
+          Passionate about software, game dev, and turning ideas into reality.
+        </p>
+        <div class="socials">
+          <a href="https://github.com/Infinitumcraftreal" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+          <a href="https://gitlab.com/Infinitumcraftreal" target="_blank" aria-label="GitLab"><i class="fab fa-gitlab"></i></a>
+          <a href="#" aria-label="Discord" onclick="copyDiscord(event)"><i class="fab fa-discord"></i></a>
+        </div>
+        <a href="#projects" class="cta-btn">See my projects <i class="fa-solid fa-arrow-down"></i></a>
+      </div>
+      <div class="about-visual">
+        <div class="avatar-wrap">
+          <img src="assets/images/avatar.jpg" alt="Infi" id="avatar" onerror="this.style.display='none'; document.getElementById('avatar-fallback').style.display='flex'">
+          <div id="avatar-fallback" class="avatar-fallback">
+            <i class="fa-solid fa-user"></i>
+          </div>
+        </div>
+        <div class="about-badge badge-1"><i class="fa-brands fa-unity"></i> Unity</div>
+        <div class="about-badge badge-2"><i class="fa-brands fa-github"></i> GitHub</div>
+        <div class="about-badge badge-3"><i class="fa-solid fa-code"></i> C++</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills" class="reveal">
+    <div class="section-header">
+      <h2>Skills</h2>
+      <p>What I work with — and how comfortable I am with each.</p>
+    </div>
+
+    <div class="skills-grid">
+
+      <div class="skill-category">
+        <div class="skill-cat-header">
+          <i class="devicon-cplusplus-plain"></i>
+          <h4>Languages</h4>
+        </div>
+        <ul>
+          <li>
+            <div class="skill-row">
+              <span><i class="devicon-cplusplus-plain"></i> C / C++</span>
+              <span class="skill-level medium">Medium</span>
+            </div>
+            <div class="skill-bar"><div style="--w: 55%"></div></div>
+          </li>
+          <li>
+            <div class="skill-row">
+              <span><i class="devicon-javascript-plain"></i> JavaScript</span>
+              <span class="skill-level medium">Medium</span>
+            </div>
+            <div class="skill-bar"><div style="--w: 55%"></div></div>
+          </li>
+          <li>
+            <div class="skill-row">
+              <span><i class="devicon-python-plain"></i> Python</span>
+              <span class="skill-level medium">Medium</span>
+            </div>
+            <div class="skill-bar"><div style="--w: 55%"></div></div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="skill-category">
+        <div class="skill-cat-header">
+          <i class="devicon-unity-plain"></i>
+          <h4>Game Dev</h4>
+        </div>
+        <ul>
+          <li>
+            <div class="skill-row">
+              <span><i class="devicon-unity-plain"></i> Unity / C#</span>
+              <span class="skill-level good">Good</span>
+            </div>
+            <div class="skill-bar"><div style="--w: 70%"></div></div>
+          </li>
+          <li>
+            <div class="skill-row">
+              <span><i class="devicon-gamemaker-plain"></i> GameMaker 2</span>
+              <span class="skill-level medium">Medium</span>
+            </div>
+            <div class="skill-bar"><div style="--w: 50%"></div></div>
+          </li>
+          <li>
+            <div class="skill-row">
+              <span><i class="devicon-godot-plain"></i> Godot</span>
+              <span class="skill-level beginner">Beginner</span>
+            </div>
+            <div class="skill-bar"><div style="--w: 25%"></div></div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="skill-category">
+        <div class="skill-cat-header">
+          <i class="fa-solid fa-screwdriver-wrench"></i>
+          <h4>Tools</h4>
+        </div>
+        <ul class="tools-list">
+          <li><i class="devicon-git-plain"></i> Git / GitHub / GitLab</li>
+          <li><i class="devicon-vscode-plain"></i> VS Code</li>
+          <li><i class="devicon-visualstudio-plain"></i> Visual Studio 2019/2022</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="projects" class="reveal">
+    <div class="section-header">
+      <h2>Projects</h2>
+      <p>A selection of things I've worked on — more coming soon.</p>
+    </div>
+
+    <div class="filters">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="game">Games</button>
+      <button class="filter-btn" data-filter="tool">Tools</button>
+      <button class="filter-btn" data-filter="web">Web</button>
+    </div>
+
+    <div class="projects-grid">
+      <div class="projects-empty" id="projects-empty" style="display:none;">
+        <i class="fa-solid fa-box-open"></i>
+        <p>Sadly there is no project for this category yet ;c</p>
+      </div>
+
+      <div class="project-card" data-type="game">
+        <div class="project-thumb">
+          <img src="assets/images/projects/farming.png" alt="Pixel Farming Game" onerror="this.parentElement.classList.add('no-img')">
+          <div class="project-overlay">
+            <a href="https://infinitumcraft.itch.io/kitsunyvalley" target="_blank" class="overlay-btn itchio-btn"><i class="fa-brands fa-itch-io"></i> View on itch.io</a>
+          </div>
+        </div>
+        <div class="project-body">
+          <div class="project-status status-wip"><i class="fa-solid fa-wrench"></i> In progress</div>
+          <h4>Kitsuny Valley</h4>
+          <p>A cozy 2D pixel art farming game built in Unity. Grow crops, manage your farm, interact with the NPCs and explore at your own pace. Not yet in public demo</p>
+          <div class="project-tags">
+            <span>Unity</span>
+            <span>C#</span>
+            <span>2D</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card" data-type="game">
+        <div class="project-thumb">
+          <img src="assets/images/projects/platformer.png" alt="2D Platformer" onerror="this.parentElement.classList.add('no-img')">
+          <div class="project-overlay">
+            <a href="https://infinitumcraft.itch.io/the-fractured-vale" target="_blank" class="overlay-btn itchio-btn"><i class="fa-brands fa-itch-io"></i> View on itch.io</a>
+          </div>
+        </div>
+        <div class="project-body">
+          <div class="project-status status-wip"><i class="fa-solid fa-wrench"></i> In progress</div>
+          <h4>The Fractured Vale</h4>
+          <p>A 2D platformer game currently in development. Fast-paced movement, levels and mechanics still being designed.</p>
+          <div class="project-tags">
+            <span>Unity</span>
+            <span>C#</span>
+            <span>2D</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card" data-type="game">
+        <div class="project-thumb">
+          <img src="assets/images/projects/kryptonite.jpeg" alt="Kryptonite Mod" onerror="this.parentElement.classList.add('no-img')">
+          <div class="project-overlay">
+            <a href="https://github.com/Infinitumcraftreal/Kryptadium" target="_blank" class="overlay-btn"><i class="fa-brands fa-github"></i> View</a>
+          </div>
+        </div>
+        <div class="project-body">
+          <div class="project-statuses">
+            <div class="project-status status-open"><i class="fa-solid fa-code-branch"></i> Open Source</div>
+            <div class="project-status status-abandoned"><i class="fa-solid fa-box-archive"></i> Abandoned</div>
+          </div>
+          <h4>Kryptonite Mod</h4>
+          <p>A 1.20.1 Minecraft mod adding kryptonite content. Development paused since 2023 — source available on GitHub.</p>
+          <div class="project-tags">
+            <span>Java</span>
+            <span>Minecraft</span>
+            <span>Open Source</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="contact" class="reveal">
+    <div class="contact-box">
+      <h2>Get in touch</h2>
+      <p>Have a project, collab idea, or just want to say hi?</p>
+
+      <div class="contact-inner">
+        <form class="contact-form" id="contact-form">
+          <div class="field">
+            <input type="text" id="name" required placeholder=" ">
+            <label for="name">Your name</label>
+          </div>
+          <div class="field">
+            <input type="email" id="email" required placeholder=" ">
+            <label for="email">Your email</label>
+          </div>
+          <div class="field">
+            <textarea id="message" rows="4" required placeholder=" "></textarea>
+            <label for="message">Your message</label>
+          </div>
+          <button type="submit" id="submit-btn">
+            <span class="btn-text">Send message</span>
+            <span class="btn-loader"></span>
+          </button>
+          <p id="form-status"></p>
+        </form>
+
+        <div class="contact-aside">
+          <i class="fa-solid fa-envelope"></i>
+          <p class="contact-email">infinitumcraft@outlook.com</p>
+          <p class="contact-note">Currently <strong>open to collaborations</strong> and projects</p>
+          <div class="contact-socials">
+            <a href="https://github.com/Infinitumcraftreal" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+            <a href="https://gitlab.com/Infinitumcraftreal" target="_blank"><i class="fab fa-gitlab"></i> GitLab</a>
+            <a href="#"><i class="fab fa-discord"></i> Discord</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2026 – Infi &nbsp;·&nbsp; built with code</p>
+  </footer>
+  <div id="discord-toast">@ infinitumcraft copied!</div>
+  <script src="script.js"></script>
+</body>
+</html>
