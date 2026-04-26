@@ -1,5 +1,34 @@
 const LANYARD_URL = 'https://lanyard-self-production.up.railway.app/v1/users/852648614282002502';
 history.scrollRestoration = 'manual';
+let currentLang = localStorage.getItem('lang') || 'en';
+
+const LANG_STATUS = {
+  en: {
+    online:  '● Online',
+    idle:    '● Idle',
+    dnd:     '● Do Not Disturb',
+    offline: '● Offline',
+  },
+  fr: {
+    online:  '● En ligne',
+    idle:    '● Inactif',
+    dnd:     '● Ne pas déranger',
+    offline: '● Hors ligne',
+  }
+};
+
+const LANG_FORM_MESSAGES = {
+  en: {
+    success: "Message sent! I'll get back to you soon ✨",
+    error: 'Something went wrong. Try again later.',
+    empty: 'Please fill in all fields.',
+  },
+  fr: {
+    success: 'Message envoyé ! Je te répondrai bientôt ✨',
+    error: 'Une erreur est survenue. Réessaie plus tard.',
+    empty: 'Merci de remplir tous les champs.',
+  }
+};
 
 const STATUS_CONFIG = {
   online:  { label: '● Online',         class: 'status-online' },
@@ -163,6 +192,16 @@ const projectCards = document.querySelectorAll('.project-card');
 const PROJECTS_PER_PAGE = 6;
 let showAll = false;
 
+function updateShowMoreText() {
+  const text = document.getElementById('show-more-text');
+  const icon = document.querySelector('#show-more-btn i');
+  if (!text) return;
+  text.textContent = showAll
+    ? (currentLang === 'en' ? 'Show less' : 'Voir moins')
+    : (currentLang === 'en' ? 'Show more' : 'Voir plus');
+  if (icon) icon.className = showAll ? 'fa-solid fa-chevron-up' : 'fa-solid fa-chevron-down';
+}
+
 function applyFilter(filter) {
   showAll = false;
   const filtered = [...projectCards].filter(card =>
@@ -170,7 +209,6 @@ function applyFilter(filter) {
   );
 
   projectCards.forEach(card => card.style.display = 'none');
-
   filtered.forEach((card, i) => {
     card.style.display = i < PROJECTS_PER_PAGE ? '' : 'none';
   });
@@ -178,11 +216,9 @@ function applyFilter(filter) {
   document.getElementById('projects-empty').style.display = filtered.length === 0 ? 'flex' : 'none';
 
   const wrap = document.getElementById('show-more-wrap');
-  const btn  = document.getElementById('show-more-btn');
   if (filtered.length > PROJECTS_PER_PAGE) {
     wrap.style.display = 'flex';
-    btn.querySelector('span').textContent = currentLang === 'en' ? 'Show more' : 'Voir plus';
-    btn.querySelector('i').className = 'fa-solid fa-chevron-down';
+    updateShowMoreText();
   } else {
     wrap.style.display = 'none';
   }
@@ -205,11 +241,7 @@ document.getElementById('show-more-btn').addEventListener('click', () => {
   filtered.forEach((card, i) => {
     card.style.display = (!showAll && i >= PROJECTS_PER_PAGE) ? 'none' : '';
   });
-  const btn = document.getElementById('show-more-btn');
-  btn.querySelector('span').textContent = showAll
-    ? (currentLang === 'en' ? 'Show less' : 'Voir moins')
-    : (currentLang === 'en' ? 'Show more' : 'Voir plus');
-  btn.querySelector('i').className = showAll ? 'fa-solid fa-chevron-up' : 'fa-solid fa-chevron-down';
+  updateShowMoreText();
 });
 
 applyFilter('all');
@@ -258,36 +290,6 @@ contactForm.addEventListener('submit', async (e) => {
   }
 });
 
-const LANG_STATUS = {
-  en: {
-    online:  '● Online',
-    idle:    '● Idle',
-    dnd:     '● Do Not Disturb',
-    offline: '● Offline',
-  },
-  fr: {
-    online:  '● En ligne',
-    idle:    '● Inactif',
-    dnd:     '● Ne pas déranger',
-    offline: '● Hors ligne',
-  }
-};
-
-const LANG_FORM_MESSAGES = {
-  en: {
-    success: "Message sent! I'll get back to you soon ✨",
-    error: 'Something went wrong. Try again later.',
-    empty: 'Please fill in all fields.',
-  },
-  fr: {
-    success: 'Message envoyé ! Je te répondrai bientôt ✨',
-    error: 'Une erreur est survenue. Réessaie plus tard.',
-    empty: 'Merci de remplir tous les champs.',
-  }
-};
-
-let currentLang = localStorage.getItem('lang') || 'en';
-
 function applyLang(lang) {
   currentLang = lang;
   localStorage.setItem('lang', lang);
@@ -305,6 +307,7 @@ function applyLang(lang) {
     const match = Object.values(ACTIVITY_TYPES).find(t => t.en === activityType.dataset.type || t.fr === activityType.dataset.type);
     if (match) activityType.textContent = match[lang];
   }
+  updateShowMoreText();
 }
 
 const langDropdown = document.getElementById('lang-dropdown');
@@ -357,4 +360,4 @@ const sectionObserver = new IntersectionObserver(entries => {
   });
 }, { threshold: 0.4 });
 
-sections.forEach(s => sectionObserver.observe(s));
+document.querySelectorAll('section[id]').forEach(s => sectionObserver.observe(s));
