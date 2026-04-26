@@ -502,6 +502,18 @@ section {
   animation-delay: 0.3s;
 }
 
+.gamemaker-icon {
+  width: 16px;
+  height: 16px;
+  vertical-align: middle;
+  margin-right: 0.3rem;
+  filter: invert(73%) sepia(30%) saturate(1200%) hue-rotate(200deg) brightness(90%);
+}
+
+[data-theme="light"] .gamemaker-icon {
+  filter: invert(73%) sepia(30%) saturate(1200%) hue-rotate(200deg) brightness(60%);
+}
+
 @keyframes grow { to { width: var(--w); } }
 
 .filters {
