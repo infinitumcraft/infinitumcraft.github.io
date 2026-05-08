@@ -116,8 +116,9 @@ async function loadDiscordAvatar() {
     const activities = json.data.activities;
 
     if (avatar) {
-      const ext      = avatar.startsWith('a_') ? 'gif' : 'png';
-      const url      = `https://cdn.discordapp.com/avatars/${id}/${avatar}.${ext}?size=256`;
+      const url = avatar.startsWith('a_')
+        ? `https://cdn.discordapp.com/avatars/${id}/${avatar}.webp?size=256&animated=true`
+        : `https://cdn.discordapp.com/avatars/${id}/${avatar}.png?size=256`;
       const img      = document.getElementById('avatar');
       const fallback = document.getElementById('avatar-fallback');
 
