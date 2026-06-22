@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy — Kitsu</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg:      #0c0c10;
+      --bg2:     #121218;
+      --card:    #18181f;
+      --border:  rgba(255,255,255,0.07);
+      --text:    #eeeef2;
+      --muted:   rgba(238,238,242,0.5);
+      --accent:  #b8a4f8;
+      --accent2: #f4a8c7;
+      --good:    #7dd4a8;
+      --radius:  18px;
+      --font:    'Plus Jakarta Sans', sans-serif;
+      --trans:   0.4s cubic-bezier(.25,.8,.25,1);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.75;
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+
+    #navbar {
+      position: sticky; top: 0; z-index: 100;
+      padding: 0 2rem;
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      background: rgba(12,12,16,0.7);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      max-width: 900px; margin: auto;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 64px;
+    }
+    .nav-logo {
+      font-weight: 800; font-size: 1.25rem; letter-spacing: -0.5px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      text-decoration: none;
+    }
+    .nav-links a {
+      text-decoration: none; color: var(--muted);
+      font-size: 0.875rem; font-weight: 500; transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--text); }
+
+    main { max-width: 760px; margin: 0 auto; padding: 5rem 2rem 7rem; }
+
+    .page-eyebrow {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--accent); margin-bottom: 1rem;
+    }
+    .page-eyebrow::before {
+      content: '';
+      display: inline-block; width: 20px; height: 2px;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      border-radius: 2px;
+    }
+
+    h1 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 800; letter-spacing: -1px;
+      line-height: 1.1; margin-bottom: 0.5rem;
+    }
+
+    .updated {
+      color: var(--muted); font-size: 0.85rem;
+      padding-bottom: 2.5rem; margin-bottom: 2.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .summary-banner {
+      background: linear-gradient(135deg, rgba(184,164,248,0.1), rgba(244,168,199,0.07));
+      border: 1px solid rgba(184,164,248,0.2);
+      border-radius: var(--radius);
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 1.5rem;
+      font-size: 0.925rem;
+      color: var(--text);
+      display: flex; align-items: center; gap: 0.75rem;
+    }
+    .summary-banner::before {
+      content: '🛡';
+      font-size: 1.2rem; flex-shrink: 0;
+    }
+
+    .legal-section {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.75rem;
+      margin-bottom: 1rem;
+      transition: box-shadow 0.3s;
+    }
+    .legal-section:hover { box-shadow: 0 12px 40px rgba(0,0,0,0.25); }
+
+    .section-num {
+      font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--accent); margin-bottom: 0.5rem;
+    }
+
+    h2 { font-size: 1rem; font-weight: 700; color: var(--text); margin-bottom: 0.75rem; }
+
+    p { color: var(--muted); font-size: 0.925rem; margin-bottom: 0.5rem; }
+    p:last-child { margin-bottom: 0; }
+
+    /* Data table */
+    .data-table {
+      width: 100%; border-collapse: collapse; margin-top: 0.75rem;
+      font-size: 0.875rem;
+    }
+    .data-table th {
+      text-align: left; padding: 0.5rem 0.75rem;
+      color: var(--accent); font-weight: 700; font-size: 0.75rem;
+      text-transform: uppercase; letter-spacing: 0.06em;
+      border-bottom: 1px solid var(--border);
+    }
+    .data-table td {
+      padding: 0.6rem 0.75rem; color: var(--muted);
+      border-bottom: 1px solid var(--border); vertical-align: top;
+    }
+    .data-table tr:last-child td { border-bottom: none; }
+    .data-table td:first-child { color: var(--text); font-weight: 600; white-space: nowrap; }
+
+    ul {
+      list-style: none; padding: 0;
+      display: flex; flex-direction: column; gap: 0.45rem;
+      margin-top: 0.5rem;
+    }
+    ul li {
+      display: flex; align-items: flex-start; gap: 0.6rem;
+      font-size: 0.925rem; color: var(--muted);
+    }
+    ul li::before {
+      content: '›'; color: var(--accent); font-weight: 700;
+      flex-shrink: 0; margin-top: 1px;
+    }
+
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .contact-card {
+      margin-top: 2rem;
+      background: linear-gradient(135deg, rgba(184,164,248,0.08), rgba(244,168,199,0.06));
+      border: 1px solid rgba(184,164,248,0.2);
+      border-radius: var(--radius);
+      padding: 1.75rem; text-align: center;
+    }
+    .contact-card p { color: var(--muted); font-size: 0.9rem; }
+
+    footer {
+      text-align: center; padding: 2.5rem 2rem;
+      color: var(--muted); font-size: 0.8rem;
+      border-top: 1px solid var(--border);
+    }
+    footer a { color: var(--accent); }
+  </style>
+</head>
+<body>
+
+<div id="navbar">
+  <div class="nav-inner">
+    <a class="nav-logo" href="#">Kitsu</a>
+    <div class="nav-links">
+      <a href="tos.html">Terms of Service</a>
+    </div>
+  </div>
+</div>
+
+<main>
+  <p class="page-eyebrow">Legal</p>
+  <h1>Privacy Policy</h1>
+  <p class="updated">Last updated: June 2025</p>
+
+  <div class="summary-banner">
+    Kitsu collects only what's needed to run its features. Your data is never sold or shared with third parties.
+  </div>
+
+  <div class="legal-section">
+    <p class="section-num">01</p>
+    <h2>What We Collect</h2>
+    <p>The following data is stored in our database to power Kitsu's features:</p>
+    <table class="data-table">
+      <thead>
+        <tr><th>Data</th><th>Why it's stored</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>User ID</td><td>Economy balance, XP/level, daily rewards, birthday, roleplay counters</td></tr>
+        <tr><td>Guild (Server) ID</td><td>Server settings, welcome/farewell config, moderation configuration</td></tr>
+        <tr><td>Birthday date</td><td>Optional — only if you set it with a birthday command</td></tr>
+        <tr><td>Moderator & warning records</td><td>Warnings issued include the moderator's User ID, target User ID, and reason</td></tr>
+        <tr><td>Giveaway data</td><td>Guild ID, channel ID, message ID, host User ID, prize, end time</td></tr>
+        <tr><td>Starboard data</td><td>Message IDs and star counts for pinned messages</td></tr>
+        <tr><td>Mute records</td><td>User ID, Guild ID, and expiry time for timed mutes</td></tr>
+        <tr><td>Anime watchlist</td><td>Per-server anime tracking — anime title, ID, last episode</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="legal-section">
+    <p class="section-num">02</p>
+    <h2>What We Don't Collect</h2>
+    <ul>
+      <li>Message content (we never read or store your messages)</li>
+      <li>Email addresses or any personal information beyond Discord IDs</li>
+      <li>Payment or financial data of any kind</li>
+      <li>Data from servers Kitsu is not added to</li>
+    </ul>
+  </div>
+
+  <div class="legal-section">
+    <p class="section-num">03</p>
+    <h2>How We Use Your Data</h2>
+    <p>All collected data is used exclusively to operate Kitsu's features — economy, levelling, moderation, giveaways, birthdays, and so on. We do not use your data for advertising, analytics sold to third parties, or any purpose beyond running the bot.</p>
+  </div>
+
+  <div class="legal-section">
+    <p class="section-num">04</p>
+    <h2>Data Sharing</h2>
+    <p>We do not sell, rent, or share your data with any third party. Data may only be disclosed if required by law.</p>
+  </div>
+
+  <div class="legal-section">
+    <p class="section-num">05</p>
+    <h2>Data Retention</h2>
+    <p>Your data is retained for as long as you or your server uses Kitsu. If Kitsu is removed from a server, that server's configuration data can be deleted upon request. Users may also request deletion of their personal data at any time.</p>
+  </div>
+
+  <div class="legal-section">
+    <p class="section-num">06</p>
+    <h2>Your Rights</h2>
+    <p>You may request access to or deletion of any data linked to your User ID by contacting us via the support server. We will process your request as soon as possible.</p>
+  </div>
+
+  <div class="legal-section">
+    <p class="section-num">07</p>
+    <h2>Third-Party Services</h2>
+    <p>Kitsu operates on Discord's platform and is subject to <a href="https://discord.com/privacy" target="_blank">Discord's Privacy Policy</a>. We have no control over data collected directly by Discord.</p>
+  </div>
+
+  <div class="legal-section">
+    <p class="section-num">08</p>
+    <h2>Changes</h2>
+    <p>This policy may be updated at any time. Significant changes will be announced in the support server.</p>
+  </div>
+
+  <div class="contact-card">
+    <p>To request data deletion or ask a privacy question, contact us via the <a href="mailto:infi@kitsubuisness.fr">infi@kitsubuisness.fr</a>.</p>
+  </div>
+</main>
+
+<footer>
+  &copy; 2025 Kitsu &nbsp;·&nbsp; <a href="tos.html">Terms of Service</a>
+</footer>
+
+</body>
+</html>

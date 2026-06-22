@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Terms of Service — Kitsu</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg:      #0c0c10;
+      --bg2:     #121218;
+      --card:    #18181f;
+      --border:  rgba(255,255,255,0.07);
+      --text:    #eeeef2;
+      --muted:   rgba(238,238,242,0.5);
+      --accent:  #b8a4f8;
+      --accent2: #f4a8c7;
+      --radius:  18px;
+      --font:    'Plus Jakarta Sans', sans-serif;
+      --trans:   0.4s cubic-bezier(.25,.8,.25,1);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.75;
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+
+    /* NAV */
+    #navbar {
+      position: sticky; top: 0; z-index: 100;
+      padding: 0 2rem;
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      background: rgba(12,12,16,0.7);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      max-width: 900px; margin: auto;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 64px;
+    }
+    .nav-logo {
+      font-weight: 800; font-size: 1.25rem; letter-spacing: -0.5px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      text-decoration: none;
+    }
+    .nav-links { display: flex; gap: 1.5rem; }
+    .nav-links a {
+      text-decoration: none; color: var(--muted);
+      font-size: 0.875rem; font-weight: 500;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--text); }
+
+    /* MAIN */
+    main { max-width: 760px; margin: 0 auto; padding: 5rem 2rem 7rem; }
+
+    .page-eyebrow {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--accent);
+      margin-bottom: 1rem;
+    }
+    .page-eyebrow::before {
+      content: '';
+      display: inline-block; width: 20px; height: 2px;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      border-radius: 2px;
+    }
+
+    h1 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 800; letter-spacing: -1px;
+      line-height: 1.1; margin-bottom: 0.5rem;
+    }
+
+    .updated {
+      color: var(--muted); font-size: 0.85rem;
+      padding-bottom: 2.5rem; margin-bottom: 2.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    /* SECTIONS */
+    .legal-section {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.75rem;
+      margin-bottom: 1rem;
+      transition: box-shadow 0.3s;
+    }
+    .legal-section:hover {
+      box-shadow: 0 12px 40px rgba(0,0,0,0.25);
+    }
+
+    .section-num {
+      font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--accent); margin-bottom: 0.5rem;
+    }
+
+    h2 {
+      font-size: 1rem; font-weight: 700;
+      color: var(--text); margin-bottom: 0.75rem;
+    }
+
+    p { color: var(--muted); font-size: 0.925rem; margin-bottom: 0.5rem; }
+    p:last-child { margin-bottom: 0; }
+
+    ul {
+      list-style: none; padding: 0;
+      display: flex; flex-direction: column; gap: 0.45rem;
+      margin-top: 0.5rem;
+    }
+    ul li {
+      display: flex; align-items: flex-start; gap: 0.6rem;
+      font-size: 0.925rem; color: var(--muted);
+    }
+    ul li::before {
+      content: '›';
+      color: var(--accent); font-weight: 700; flex-shrink: 0; margin-top: 1px;
+    }
+
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* CONTACT BOX */
+    .contact-card {
+      margin-top: 2rem;
+      background: linear-gradient(135deg, rgba(184,164,248,0.08), rgba(244,168,199,0.06));
+      border: 1px solid rgba(184,164,248,0.2);
+      border-radius: var(--radius);
+      padding: 1.75rem;
+      text-align: center;
+    }
+    .contact-card p { color: var(--muted); font-size: 0.9rem; }
+
+    footer {
+      text-align: center; padding: 2.5rem 2rem;
+      color: var(--muted); font-size: 0.8rem;
+      border-top: 1px solid var(--border);
+    }
+    footer a { color: var(--accent); }
+  </style>
+</head>
+<body>
+
+<div id="navbar">
+  <div class="nav-inner">
+    <a class="nav-logo" href="#">Kitsu</a>
+    <div class="nav-links">
+      <a href="privacy.html">Privacy Policy</a>
+    </div>
+  </div>
+</div>
+
+<main>
+  <p class="page-eyebrow">Legal</p>
+  <h1>Terms of Service</h1>
+  <p class="updated">Last updated: June 2025</p>
+
+  <div class="legal-section">
+    <p class="section-num">01</p>
+    <h2>Acceptance</h2>
+    <p>By adding Kitsu to your Discord server or using it as a user-installed application, you agree to these Terms of Service. If you do not agree, please remove the bot and stop using it.</p>
+  </div>
+
+  <div class="legal-section">
+    <p class="section-num">02</p>
+    <h2>What Kitsu Is</h2>
+    <p>Kitsu is a Discord bot offering anime-themed and social features including roleplay commands, economy and levelling systems, moderation tools, giveaways, a starboard, birthday tracking, and server utilities.</p>
+  </div>
+
+  <div class="legal-section">
+    <p class="section-num">03</p>
+    <h2>Eligibility</h2>
+    <p>You must be at least 13 years old (or the minimum age required in your country) and comply with <a href="https://discord.com/terms" target="_blank">Discord's Terms of Service</a> to use Kitsu.</p>
+  </div>
+
+  <div class="legal-section">
+    <p class="section-num">04</p>
+    <h2>Acceptable Use</h2>
+    <p>You agree not to use Kitsu to:</p>
+    <ul>
+      <li>Harass, threaten, or harm other users</li>
+      <li>Spam commands or attempt to abuse or overload the bot</li>
+      <li>Exploit, reverse-engineer, or interfere with the bot's systems</li>
+      <li>Violate Discord's Terms of Service or Community Guidelines</li>
+      <li>Use the bot for any unlawful purpose</li>
+    </ul>
+  </div>
+
+  <div class="legal-section">
+    <p class="section-num">05</p>
+    <h2>Availability</h2>
+    <p>Kitsu is provided as-is with no guarantee of uptime. The bot may be taken offline for maintenance or updates at any time without prior notice.</p>
+  </div>
+
+  <div class="legal-section">
+    <p class="section-num">06</p>
+    <h2>Termination</h2>
+    <p>We reserve the right to restrict or block access to Kitsu for any user or server that violates these terms, without prior notice.</p>
+  </div>
+
+  <div class="legal-section">
+    <p class="section-num">07</p>
+    <h2>Changes</h2>
+    <p>These terms may be updated at any time. Continued use of Kitsu after changes are posted constitutes acceptance of the updated terms.</p>
+  </div>
+
+  <div class="legal-section">
+    <p class="section-num">08</p>
+    <h2>Disclaimer</h2>
+    <p>Kitsu is not affiliated with, endorsed by, or partnered with Discord Inc. It is an independent project provided free of charge.</p>
+  </div>
+
+  <div class="contact-card">
+    <p>Questions or concerns? Reach out via the <a href="mailto:infi@kitsubuisness.fr">infi@kitsubuisness.fr</a>.</p>
+  </div>
+</main>
+
+<footer>
+  &copy; 2025 Kitsu &nbsp;·&nbsp; <a href="privacy.html">Privacy Policy</a>
+</footer>
+
+</body>
+</html>
